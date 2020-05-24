@@ -15,7 +15,7 @@ data class User(
     val isOnline: Boolean = false
 ) {
 
-    private var introBit: String
+    var introBit: String
 
     constructor(
         id: String,
@@ -62,13 +62,11 @@ data class User(
 
             lastId++
 
-            return if (fullName == null) {
-                User(id = "$lastId")
+            if (fullName == null) {
+                return User(id = "$lastId")
             } else {
-                User(id = "$lastId", firstName = firstName, lastName = lastName)
+                return User(id = "$lastId", firstName = firstName, lastName = lastName)
             }
-
         }
     }
 }
-

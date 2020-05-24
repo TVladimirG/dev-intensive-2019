@@ -1,6 +1,8 @@
 package ru.skillbranch.devintensive.extensions
+import ru.skillbranch.devintensive.utils.Utils.plural
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
@@ -30,9 +32,8 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
 
 fun Date.humanizeDiff(date: Date = Date()): String {
 
-
     val prf: String
-    var timePerf: String = ""
+    var timePerf = ""
 
     var delta = date.time - this.time // если больше 0 значит date в прошлом.
     var past = false
@@ -83,57 +84,6 @@ fun Date.humanizeDiff(date: Date = Date()): String {
         }
     }
     return timePerf
-}
-
-fun TimeUnits.plural(value: Int): String {
-
-    val rem = getLastNum(value)
-    var perf = ""
-
-    if (this == TimeUnits.SECOND) {
-        when (rem) {
-            1 -> perf = "секунду"
-            in 2..4 -> perf = "секунды"
-            in 5..20 -> perf = "секунд"
-        }
-    }
-
-    if (this == TimeUnits.MINUTE) {
-        when (rem) {
-            1 -> perf = "минуту"
-            in 2..4 -> perf = "минуты"
-            in 5..20 -> perf = "минут"
-        }
-    }
-
-    if (this == TimeUnits.HOUR) {
-        when (rem) {
-            1 -> perf = "час"
-            in 2..4 -> perf = "часа"
-            in 5..20 -> perf = "часов"
-        }
-    }
-
-    if (this == TimeUnits.DAY) {
-        when (rem) {
-            1 -> perf = "день"
-            in 2..4 -> perf = "дня"
-            in 5..20 -> perf = "дней"
-        }
-    }
-
-    return "$value $perf"
-}
-
-private fun getLastNum(value: Int): Int {
-
-    if (value < 20) {
-        return value
-    }
-
-    val valueStr = value.toString()
-    return valueStr[valueStr.lastIndex].toString().toInt()
-
 }
 
 enum class TimeUnits {

@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.extensions
 
-
 fun String.truncate(numChar: Int = 16): String {
 
     val aggregate = "..."
