@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.utils
 
-import android.service.voice.AlwaysOnHotwordDetector
-import java.util.*
 import kotlin.collections.HashMap
 
 object Utils {
