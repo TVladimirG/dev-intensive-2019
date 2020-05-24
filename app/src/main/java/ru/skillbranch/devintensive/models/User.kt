@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.models
 
-
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
@@ -62,7 +61,7 @@ data class User(
 
             lastId++
 
-            return if (fullName == null) {
+            return if (firstName == null || lastName == null) {
                 User(id = "$lastId")
             } else {
                 User(id = "$lastId", firstName = firstName, lastName = lastName)
