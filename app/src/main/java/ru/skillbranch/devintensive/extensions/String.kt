@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.extension
+package ru.skillbranch.devintensive.extensions
 
 
 fun String.truncate(numChar: Int = 16): String {
