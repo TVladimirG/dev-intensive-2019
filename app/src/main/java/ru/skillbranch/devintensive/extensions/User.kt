@@ -9,6 +9,7 @@ fun User?.toUserView(): UserView? {
     if (this == null) { return null }
 
     if (this.firstName?.equals(null) ?: (true)) { return null }
+    if (this.firstName == null) { return null }
 
 
     val nickName = Utils.transliteration("$firstName $lastName")
