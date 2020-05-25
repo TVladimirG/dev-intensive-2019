@@ -5,16 +5,19 @@ import java.util.*
 
 class ImageMessage(
     id: String,
-    from: User,
+    from: User?,
     chat: Chat,
     isIncoming: Boolean = false,
     date: Date = Date(),
     var image: String?
 ) : BaseMessage(id, from, chat, isIncoming, date) {
     override fun formatMessage(): String {
-        return "id = $id ${from.firstName} " +
-                "${if (isIncoming) "получил" else "отправил"} " +
-                "изображение \"$image\" " +
-                "${date.humanizeDiff()} "
+        if (from != null) {
+            return "id = $id ${from.firstName} " +
+                    "${if (isIncoming) "получил" else "отправил"} " +
+                    "изображение \"$image\" " +
+                    "${date.humanizeDiff()} "
+        }
+        return "id = $id"
     }
 }

@@ -54,6 +54,7 @@ data class User(
     companion object Factory {
         private var lastId = -1
         fun makeUser(fullName: String?): User? {
+
             val (firstName, lastName) = Utils.parseFullName(fullName)
             lastId++
             return if (firstName == null || lastName == null) {

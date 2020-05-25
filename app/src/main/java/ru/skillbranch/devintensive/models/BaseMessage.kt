@@ -4,7 +4,7 @@ import java.util.*
 
 abstract class BaseMessage(
     val id: String,
-    val from: User,
+    val from: User?,
     val chat: Chat,
     val isIncoming: Boolean = false,
     val date: Date = Date()
@@ -15,7 +15,7 @@ abstract class BaseMessage(
     companion object AbstractFactory {
         private var lastId = -1
         fun makeMessage(
-            from: User,
+            from: User?,
             chat: Chat,
             date: Date = Date(),
             type: String = "text",
