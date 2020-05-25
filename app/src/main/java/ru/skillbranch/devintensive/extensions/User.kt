@@ -4,9 +4,14 @@ import ru.skillbranch.devintensive.models.User
 import ru.skillbranch.devintensive.models.UserView
 import ru.skillbranch.devintensive.utils.Utils
 
-fun User?.toUserView(): UserView {
+fun User?.toUserView(): UserView? {
 
-    val nickName = Utils.transliteration("${this!!.firstName} $lastName")
+    if (this == null) { return null }
+
+    if (this.firstName?.equals(null) ?: (true)) { return null }
+
+
+    val nickName = Utils.transliteration("$firstName $lastName")
     val initials = Utils.toInitials(firstName, lastName)
     val status = when {
         lastVisit == null -> " Ни разу не был"

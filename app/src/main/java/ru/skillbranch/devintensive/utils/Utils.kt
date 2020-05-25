@@ -5,9 +5,13 @@ import kotlin.collections.HashMap
 object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
 
-        val parts = fullName?.split(" ")
-        val firstName = parts?.getOrNull(0)
-        val lastName = parts?.getOrNull(1)
+        if (fullName == null) {
+            return Pair(null, null)
+        }
+
+        val parts = fullName.split(" ")
+        val firstName = parts.getOrNull(0)
+        val lastName = parts.getOrNull(1)
 
         return Pair(firstName, lastName)
 
@@ -44,11 +48,8 @@ object Utils {
                     itemNew.toUpperCase()
                 }
             }
-
             payloadNew = "$payloadNew$itemNew"
-
         }
-
         return payloadNew
     }
 

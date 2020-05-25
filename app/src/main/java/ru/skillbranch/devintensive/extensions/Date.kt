@@ -139,6 +139,5 @@ enum class TimeUnits {
 
         val valueStr = value.toString()
         return valueStr[valueStr.lastIndex].toString().toInt()
-
     }
 }
