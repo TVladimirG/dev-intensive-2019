@@ -24,8 +24,8 @@ abstract class BaseMessage(
         ): BaseMessage {
             lastId++
             return when (type) {
-                "image"   -> ImageMessage("$lastId", from, chat, date = date, image = payLoad as String)
-                else      ->  TextMessage("$lastId", from, chat, date = date, text = payLoad as String)
+                "image"   -> ImageMessage("$lastId", from!!, chat, date = date, image = payLoad as String)
+                else      ->  TextMessage("$lastId", from!!, chat, date = date, text = payLoad as String)
             }
         }
     }

@@ -14,7 +14,7 @@ data class User(
     val isOnline: Boolean = false
 ) {
 
-    private var introBit: String
+  //  private var introBit: String
 
     constructor(
         id: String,
@@ -24,19 +24,19 @@ data class User(
 
     constructor(id: String) : this(id, "John", "Doe (id=$id)")
 
-    init {
-        introBit = getIntro()
-        println(
-            " It's Alive!!! $firstName $lastName " +
-                    " ${if (lastName === "Doe") " His name is $firstName $lastName" else "And his name is $firstName $lastName!!!"} \n" +
-                    ""  //  " ${getIntro()} "
-        )
-    }
+  //  init {
+  //      introBit = getIntro()
+  //      println(
+  //          " It's Alive!!! $firstName $lastName " +
+  //                  " ${if (lastName === "Doe") " His name is $firstName $lastName" else "And his name is $firstName $lastName!!!"} \n" +
+  //                  ""  //  " ${getIntro()} "
+  //      )
+  //  }
 
-    private fun getIntro(): String = """
-                                     intro intro
-                                     intro
-                                  """.trimIndent()
+ //   private fun getIntro(): String = """
+ //                                    intro intro
+ //                                    intro
+ //                                 """.trimIndent()
 
     fun printMe() = println(
         """
@@ -52,15 +52,10 @@ data class User(
     )
 
     companion object Factory {
-
         private var lastId = -1
-
         fun makeUser(fullName: String?): User? {
-
             val (firstName, lastName) = Utils.parseFullName(fullName)
-
             lastId++
-
             return if (firstName == null || lastName == null) {
                 User(id = "$lastId")
             } else {
