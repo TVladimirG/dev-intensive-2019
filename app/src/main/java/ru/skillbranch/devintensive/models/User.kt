@@ -24,14 +24,11 @@ data class User(
 
     constructor(id: String) : this(id, "John", "Doe (id=$id)")
 
-  //  init {
-  //      introBit = getIntro()
-  //      println(
-  //          " It's Alive!!! $firstName $lastName " +
-  //                  " ${if (lastName === "Doe") " His name is $firstName $lastName" else "And his name is $firstName $lastName!!!"} \n" +
-  //                  ""  //  " ${getIntro()} "
-  //      )
-  //  }
+    init {
+     //   println(
+     //       " It's Alive!!! $firstName $lastName "
+     //   )
+    }
 
  //   private fun getIntro(): String = """
  //                                    intro intro
@@ -53,7 +50,7 @@ data class User(
 
     companion object Factory {
         private var lastId = -1
-        fun makeUser(fullName: String?): User? {
+        fun makeUser(fullName: String?): User {
 
             val (firstName, lastName) = Utils.parseFullName(fullName)
             lastId++
