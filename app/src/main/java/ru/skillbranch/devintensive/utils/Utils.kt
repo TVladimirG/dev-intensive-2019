@@ -3,13 +3,27 @@ package ru.skillbranch.devintensive.utils
 import kotlin.collections.HashMap
 
 object Utils {
+    /*Необходимо реализовать утилитный метод parseFullName(fullName)
+    принимающий в качестве аргумента полное имя пользователя
+    и возвращающий пару значений "firstName lastName"
+    Реализуй метод Utils.parseFullName(fullName) принимающий в качестве аргумента полное имя пользователя (null, пустую строку)
+    и возвращающий пару значений Pair(firstName, lastName) при невозможности распарсить полное имя или его часть вернуть null null/"firstName" null
+     */
     fun parseFullName(fullName: String?): Pair<String?, String?> {
 
-        if (fullName == null) {
+    //  Utils.parseFullName(null) //null null
+        var inComFullName = fullName
+        if (inComFullName == null) {
             return Pair(null, null)
         }
 
-        val parts = fullName.split(" ")
+    //  Utils.parseFullName("") //null null
+    //  Utils.parseFullName(" ") //null null
+        inComFullName = inComFullName.trim()
+        if (inComFullName.isEmpty())  return Pair(null, null)
+
+
+        val parts = inComFullName.split(" ")
         val firstName = parts.getOrNull(0)
         val lastName = parts.getOrNull(1)
 
