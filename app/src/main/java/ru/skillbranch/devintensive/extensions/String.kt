@@ -24,22 +24,25 @@ fun String.stripHtml(): String {
     sourceString = sourceString.substringAfter(">")
     sourceString = sourceString.substringBefore("</")
 
-    while (true) if (sourceString.contains("& < > ' \"")) {
+    while (true) if (sourceString.contains("&")) {
         sourceString = sourceString.replace("&", "", true)
-        sourceString = sourceString.replace("<", "", true)
-        sourceString = sourceString.replace(">", "", true)
-        sourceString = sourceString.replace("\"", "", true)
-    } else {
-        break
-    }
+    } else { break }
 
-    while (true) if (sourceString.contains(" ")) {
+    while (true) if (sourceString.contains("<")) {
+        sourceString = sourceString.replace("<", "", true)
+    } else { break }
+
+    while (true) if (sourceString.contains("> ' \" ")) {
+        sourceString = sourceString.replace(">", "", true)
+    } else { break }
+
+    while (true) if (sourceString.contains("\"")) {
+        sourceString = sourceString.replace("\"", "", true)
+    } else { break }
+
+    while (true) if (sourceString.contains("  ")) {
         sourceString = sourceString.replace("  ", " ", true)
-    } else {
-        break
-    }
+    } else { break }
 
     return sourceString
 }
-
-
