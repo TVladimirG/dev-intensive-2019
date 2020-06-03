@@ -41,20 +41,22 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         messageEv = et_message
         sendBtn = iv_send
 
-        val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
-        val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
+        val status      = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
+        val question    = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
         val userMessage = savedInstanceState?.getString("USER_MESSAGE") ?: ""
 
-        messageEv.setText(userMessage)
-
         benderObj = Bender( Bender.Status.valueOf(status), Bender.Question.valueOf(question))
+        val (r, g, b) = benderObj.status.color
+        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
 
+        messageEv.setText(userMessage)
         textTxt.text = benderObj.askQuestion()
+
         sendBtn.setOnClickListener(this)
 
         // установить в клавиатуре кнопку "DONE" и обрабатывать ввод по нажатию на нее.
         // В начале нужно утановить тип ввода
-        messageEv.inputType = InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE; // короткое сообщение
+        messageEv.inputType = InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE // короткое сообщение
       //  messageEv.inputType = InputType.TYPE_CLASS_PHONE; // номер телефона например
         // Теперь опцию - заменим кнопку Enter на "DONE"
         messageEv.imeOptions = EditorInfo.IME_ACTION_DONE

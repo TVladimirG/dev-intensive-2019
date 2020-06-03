@@ -1,5 +1,8 @@
 package ru.skillbranch.devintensive.models
 
+import android.graphics.Color
+import android.graphics.PorterDuff
+
 class Bender(var status: Status = Status.NORMAL, var question: Question = Question.NAME) {
 
     fun askQuestion() : String = when (question) {
@@ -12,9 +15,10 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
+
         return if (question.answers.contains(answer)) {
 
-            status = status.previousStatus()
+          //  status = status.previousStatus()
             question = question.nextQuestion()
             "Отлично - ты справился \n" +
                     " ${question.question}" to status.color
