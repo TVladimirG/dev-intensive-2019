@@ -6,11 +6,15 @@ import ru.skillbranch.devintensive.utils.Utils
 
 fun User.toUserView(): UserView {
 
-  //  if (this.firstName?.equals(null) ?: (true)) { return null }
+    //  if (this.firstName?.equals(null) ?: (true)) { return null }
     //if (this.firstName == null) { return null }
 
-    if (firstName == null) {firstName = ""}
-    if (lastName == null) {lastName = ""}
+    if (firstName == null) {
+        firstName = ""
+    }
+    if (lastName == null) {
+        lastName = ""
+    }
 
     val nickName = Utils.transliteration("$firstName $lastName")
     val initials = Utils.toInitials(firstName, lastName)

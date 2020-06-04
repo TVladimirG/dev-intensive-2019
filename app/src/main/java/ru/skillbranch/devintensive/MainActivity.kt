@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.Rect
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -19,6 +20,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.extensions.hideKeyboard
+import ru.skillbranch.devintensive.extensions.isKeyboardClosed
+import ru.skillbranch.devintensive.extensions.isKeyboardOpen
 import ru.skillbranch.devintensive.models.Bender
 import java.util.*
 
@@ -37,9 +40,9 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         Log.d("M_MainActivity","onCreate")
 
         benderImage = iv_bender
-        textTxt = tv_text
-        messageEv = et_message
-        sendBtn = iv_send
+        textTxt     = tv_text
+        messageEv   = et_message
+        sendBtn     = iv_send
 
         val status      = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question    = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
@@ -63,6 +66,9 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         //  messageEv.setImeActionLabel("DONE", EditorInfo.IME_ACTION_DONE);  // А это не работает!
         // И в конце нужно установить слушатель кнопки Enter
         messageEv.setOnEditorActionListener(this)
+
+        Log.d("M_MainActivity","isKeyboardOpen: ${isKeyboardOpen()}")
+        Log.d("M_MainActivity","isKeyboardClosed: ${isKeyboardClosed()}")
 
     }
 
@@ -98,9 +104,9 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("STATUS",  benderObj.status.name)
-        outState.putString("QUESTION",  benderObj.question.name)
-        outState.putString("USER_MESSAGE", messageEv.text.toString())
+        outState.putString("STATUS"       , benderObj.status.name)
+        outState.putString("QUESTION"     , benderObj.question.name)
+        outState.putString("USER_MESSAGE" , messageEv.text.toString())
     }
 
 
@@ -108,11 +114,11 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         if (v?.id == R.id.iv_send) {
             runSending()
 
-            //   val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-         //   imm.hideSoftInputFromWindow(messageEv.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            Log.d("M_MainActivity","onClick isKeyboardOpen: ${isKeyboardOpen()}")
+            Log.d("M_MainActivity","onClick isKeyboardClosed: ${isKeyboardClosed()}")
 
-            hideKeyboard()
-           // Activity().hideKeyboard(messageEv as View)
+            if (isKeyboardOpen()) hideKeyboard()
+
         }
     }
 
@@ -121,7 +127,12 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         if (v?.id == R.id.et_message) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 runSending()
+                Log.d("M_MainActivity","isKeyboardOpen: ${isKeyboardOpen()}")
+                Log.d("M_MainActivity","isKeyboardClosed: ${isKeyboardClosed()}")
                 hideKeyboard()
+                Log.d("M_MainActivity","isKeyboardOpen: ${isKeyboardOpen()}")
+                Log.d("M_MainActivity","isKeyboardClosed: ${isKeyboardClosed()}")
+                Log.d("M_MainActivity","onRestart")
                 Log.d("M_MainActivity","onEditorAction")
                 Log.d("M_MainActivity","$actionId")
                 return true
@@ -132,11 +143,12 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
 
     private fun runSending() {
         val (phrase, color) = benderObj.listenAnswer(
-                messageEv.text.toString().toLowerCase(Locale.ROOT)
+                messageEv.text.toString()
                 )
         messageEv.setText("")
         val (r, g, b) = color
         benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
         textTxt.text = phrase
     }
+
 }

@@ -15,7 +15,6 @@ fun String.truncate(numChar: Int = 16): String {
     sourceString = sourceString.trimEnd()
 
     return "$sourceString$aggregate"
-
 }
 
 fun String.stripHtml(): String {
@@ -26,23 +25,33 @@ fun String.stripHtml(): String {
 
     while (true) if (sourceString.contains("&")) {
         sourceString = sourceString.replace("&", "", true)
-    } else { break }
+    } else {
+        break
+    }
 
     while (true) if (sourceString.contains("<")) {
         sourceString = sourceString.replace("<", "", true)
-    } else { break }
+    } else {
+        break
+    }
 
     while (true) if (sourceString.contains("> ' \" ")) {
         sourceString = sourceString.replace(">", "", true)
-    } else { break }
+    } else {
+        break
+    }
 
     while (true) if (sourceString.contains("\"")) {
         sourceString = sourceString.replace("\"", "", true)
-    } else { break }
+    } else {
+        break
+    }
 
     while (true) if (sourceString.contains("  ")) {
         sourceString = sourceString.replace("  ", " ", true)
-    } else { break }
+    } else {
+        break
+    }
 
     return sourceString
 }
