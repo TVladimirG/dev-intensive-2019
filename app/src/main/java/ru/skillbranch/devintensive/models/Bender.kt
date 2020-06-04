@@ -20,8 +20,8 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
 
         val (newText, isMistake) = validationResponse(question, answer)
         if (isMistake) {
-            return ("$newText \n" +
-                    " ${question.question}" to status.color)
+            return ("$newText\n" +
+                    "${question.question}" to status.color)
         }
 
         if (question.answers.contains(answer)) {
@@ -29,23 +29,23 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             numberIncorrectAnswers = 0
             question = question.nextQuestion()
 
-            return ("Отлично - ты справился \n" +
-                    " ${question.question}" to status.color)
+            return ("Отлично - ты справился\n" +
+                    "${question.question}" to status.color)
         } else {
 
             numberIncorrectAnswers++
             return if (numberIncorrectAnswers < 3) {
                 status = status.nextStatus()
 
-                ("Это не правилный ответ \n" +
-                        " ${question.question}" to status.color)
+                ("Это не правилный ответ\n" +
+                        "${question.question}" to status.color)
             } else {
                 numberIncorrectAnswers = 0
                 status = status.firstStatus()
                 question = question.firstQuestion()
 
                 ("Это неправильный ответ. Давай все по новой\n" +
-                        " ${question.question}" to status.color)
+                        "${question.question}" to status.color)
             }
         }
     }
