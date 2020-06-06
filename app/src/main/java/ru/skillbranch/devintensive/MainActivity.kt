@@ -1,10 +1,7 @@
 package ru.skillbranch.devintensive
 
-import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.graphics.Rect
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -12,7 +9,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 
 import android.widget.EditText
 import android.widget.ImageView
@@ -23,7 +19,7 @@ import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.extensions.isKeyboardClosed
 import ru.skillbranch.devintensive.extensions.isKeyboardOpen
 import ru.skillbranch.devintensive.models.Bender
-import java.util.*
+
 
 class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActionListener {
 
@@ -37,7 +33,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("M_MainActivity","onCreate")
+        //Log.d("M_MainActivity","onCreate")
 
         benderImage = iv_bender
         textTxt     = tv_text
@@ -57,7 +53,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
 
         sendBtn.setOnClickListener(this)
 
-        if (isKeyboardOpen()) hideKeyboard()
+        //if (isKeyboardOpen()) hideKeyboard()
 
         // установить в клавиатуре кнопку "DONE" и обрабатывать ввод по нажатию на нее.
         // В начале нужно утановить тип ввода
@@ -115,7 +111,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
         //    if (isKeyboardOpen()) hideKeyboard()
-            hideKeyboard()
+        //    hideKeyboard()
             runSending()
 
             Log.d("M_MainActivity","onClick isKeyboardOpen: ${isKeyboardOpen()}")
