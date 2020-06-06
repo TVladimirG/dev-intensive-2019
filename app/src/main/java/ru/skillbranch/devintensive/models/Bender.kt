@@ -26,22 +26,24 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
 
         if (question.answers.contains(answer)) {
 
-            numberIncorrectAnswers = 0
+            //   numberIncorrectAnswers = 0
             question = question.nextQuestion()
 
             return ("Отлично - ты справился\n" +
                     "${question.question}" to status.color)
         } else {
 
-            numberIncorrectAnswers++
-            return if (numberIncorrectAnswers < 4) {
+            //    numberIncorrectAnswers++
+
+            // (numberIncorrectAnswers < 4) {
+            return if (status != Status.CRITICAL) {
                 status = status.nextStatus()
                 ("Это неправильный ответ\n${question.question}" to status.color)
 
             } else {
-                numberIncorrectAnswers = 0
-             //   status = status.firstStatus()
-             //   question = question.firstQuestion()
+                //  numberIncorrectAnswers = 0
+                //   status = status.firstStatus()
+                //   question = question.firstQuestion()
                 status = Status.NORMAL
                 question = Question.NAME
 
@@ -78,7 +80,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         NORMAL(Triple(255, 255, 255)),
         WARNING(Triple(255, 120, 0)),
         DANGER(Triple(255, 60, 60)),
-        CRITICAL(Triple(255, 255, 0));
+        CRITICAL(Triple(255, 0, 0));
 
         fun nextStatus(): Status {
             return if (this.ordinal < values().lastIndex) {
