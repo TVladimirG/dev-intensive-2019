@@ -112,12 +112,12 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
+        //    if (isKeyboardOpen()) hideKeyboard()
+            hideKeyboard()
             runSending()
 
             Log.d("M_MainActivity","onClick isKeyboardOpen: ${isKeyboardOpen()}")
             Log.d("M_MainActivity","onClick isKeyboardClosed: ${isKeyboardClosed()}")
-
-            if (isKeyboardOpen()) hideKeyboard()
 
         }
     }
