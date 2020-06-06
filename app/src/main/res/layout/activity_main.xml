@@ -55,7 +55,7 @@
 
         <ImageView
             android:id="@+id/iv_send"
-            android:layout_width="50dp"
+            android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/spacing_normal_16"
