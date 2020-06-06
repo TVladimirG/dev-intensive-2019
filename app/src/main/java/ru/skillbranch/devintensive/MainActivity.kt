@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
 
         sendBtn.setOnClickListener(this)
 
+        if (isKeyboardOpen()) hideKeyboard()
+
         // установить в клавиатуре кнопку "DONE" и обрабатывать ввод по нажатию на нее.
         // В начале нужно утановить тип ввода
         messageEv.inputType = InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE // короткое сообщение
@@ -67,8 +69,8 @@ class MainActivity : AppCompatActivity(), OnClickListener, TextView.OnEditorActi
         // И в конце нужно установить слушатель кнопки Enter
         messageEv.setOnEditorActionListener(this)
 
-        Log.d("M_MainActivity","isKeyboardOpen: ${isKeyboardOpen()}")
-        Log.d("M_MainActivity","isKeyboardClosed: ${isKeyboardClosed()}")
+    //    Log.d("M_MainActivity","isKeyboardOpen: ${isKeyboardOpen()}")
+    //    Log.d("M_MainActivity","isKeyboardClosed: ${isKeyboardClosed()}")
 
     }
 
