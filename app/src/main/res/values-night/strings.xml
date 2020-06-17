@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="h_first_name">Имя</string>
+    <string name="h_last_name">Фамилия</string>
+    <string name="h_about">О себе</string>
+    <string name="h_repository">Репозиторий</string>
+    <string name="st_rating">Рейтинг</string>
+    <string name="st_respect">Уважение</string>
+    <string name="st_0">0</string>
+</resources>
