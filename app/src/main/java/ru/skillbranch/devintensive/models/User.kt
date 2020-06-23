@@ -22,7 +22,7 @@ data class User(
         lastName: String?
     ) : this(id, firstName, lastName, null)
 
-    constructor(id: String) : this(id, "John", "Doe (id=$id)")
+   constructor(id: String) : this(id, "John", "Doe (id=$id)")
 
     init {
      //   println(

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription">
 
     <ImageView
         android:id="@+id/imageView"
@@ -48,7 +49,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_avatar"
         app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_edit_black_24dp"
-         />
+        tools:ignore="PrivateResource" />
 
     <ImageView
         android:id="@+id/iv_avatar"
@@ -94,7 +95,7 @@
         android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:background="@color/color_primary_light"
+        android:background="?attr/colorAccentedSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -214,6 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/h_first_name"
+            android:maxLength="50"
             tools:text="John" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -232,6 +234,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/h_last_name"
+            android:maxLength="50"
             tools:text="Dow" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -242,7 +245,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="?android:attr/listDivider"
+        android:background="?attr/colorDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
@@ -263,6 +266,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="128"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5">
@@ -272,6 +277,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/h_about"
+            android:maxLines="3"
             tools:text="Что-то о себе" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -284,7 +290,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_weight="1"
-        android:background="?android:attr/listDivider"
+        android:background="?attr/colorDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wr_about" />
@@ -305,8 +311,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/ic_eye"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/divider3">
@@ -320,13 +326,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/ic_eye"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/wr_repository"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/wr_repository"
         app:layout_constraintTop_toTopOf="@+id/wr_repository"
         app:srcCompat="@drawable/ic_eye_24dp" />
 
