@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -88,7 +89,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun updateTheme(mode: Int) {
-        delegate.localNightMode = mode
+        AppCompatDelegate.setDefaultNightMode(mode)
+        //   delegate.localNightMode = mode
     }
 
     private fun initViews() {
