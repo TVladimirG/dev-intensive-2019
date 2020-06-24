@@ -21,6 +21,4 @@ data class Profile(
         "about" to about,
         "repository" to repository
     )
-
-
 }

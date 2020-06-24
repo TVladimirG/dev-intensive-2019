@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile_constraint.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
@@ -22,9 +23,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     lateinit var viewFields: Map<String, TextView>
-
     private lateinit var viewModel: ProfileViewModel
-
     private var isEditMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,26 +54,29 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        outState.putBoolean(IS_EDIT_MODE, isEditMode)
-    }
-
     private fun initViewModel() {
 
         // Устарело. Так предлогали на курсе.
-        //    val viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
 
         // Теперь так:
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        // Инициируем ViewModel для текущей активити. Указываем класс реализующий ViewModel - ProfileViewModel
+        //   viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+
+        // И добавляем любое кол-во LiveData в нашу ViewModel:
+        //    viewModel.getProfileData()
+        // и сразу подписываем на наблюдение и добавляем обновдление данных
+        //    observe(this, Observer { updateUI(it) })
+        // и сразу подписываем на обновление данных
+
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getThem().observe(this, Observer { updateTheme(it) })
     }
 
-    private fun updateTheme(mode: Int) {
-        delegate.localNightMode = mode
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
 
+        outState.putBoolean(IS_EDIT_MODE, isEditMode)
     }
 
     private fun updateUI(profile: Profile?) {
@@ -85,8 +87,11 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViews() {
+    private fun updateTheme(mode: Int) {
+        delegate.localNightMode = mode
+    }
 
+    private fun initViews() {
         viewFields = mapOf(
             "nickName" to tv_nick_name,
             "rank" to tv_rank,
@@ -154,7 +159,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun saveProfileInfo() {
         Profile(
-            firstName = et_last_name.text.toString(),
+            firstName = et_first_name.text.toString(),
             lastName = et_last_name.text.toString(),
             about = et_about.text.toString(),
             repository = et_repository.text.toString()
@@ -163,5 +168,4 @@ class ProfileActivity : AppCompatActivity() {
 
         }
     }
-
 }

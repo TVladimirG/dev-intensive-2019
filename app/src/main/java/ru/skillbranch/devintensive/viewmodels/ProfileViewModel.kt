@@ -9,13 +9,11 @@ import ru.skillbranch.devintensive.models.Profile
 
 class ProfileViewModel : ViewModel() {
 
-    // что это????
+    // Получим объект - SharedPreferences
     private val repository: PreferencesRepository = PreferencesRepository
 
-    // А это что???
+    // создаем LiveData
     private val profileData = MutableLiveData<Profile>()
-
-
     private val appTheme = MutableLiveData<Int>()
 
     init {
@@ -44,9 +42,6 @@ class ProfileViewModel : ViewModel() {
         } else {
             appTheme.value = AppCompatDelegate.MODE_NIGHT_YES
         }
-
         repository.saveAppTheme(appTheme.value!!)
     }
-
-
 }
