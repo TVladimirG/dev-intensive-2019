@@ -6,6 +6,8 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.ImageView
+import androidx.annotation.ColorRes
+import androidx.annotation.Dimension
 import ru.skillbranch.devintensive.R
 
 
@@ -59,14 +61,13 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-
         //   canvas!!.drawOval(30f,30f,30f,30f, Paint())
 
         //   val dr: RoundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, src. as Bitmap)
         //   dr.cornerRadius = cornerRadius
         //   imageView.setImageDrawable(dr)
 
-//        val bitmap = (.getDrawable() as BitmapDrawable).bitmap
+        //  val bitmap = (.getDrawable() as BitmapDrawable).bitmap
         //       var bitmap = ImageHelper.getRoundedCornerBitmap(bitmap, )
         //  val paint = Paint()
 
@@ -83,9 +84,9 @@ class CircleImageView @JvmOverloads constructor(
         //  val shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
 
         //  paint.isAntiAlias = true
-        // paint.shader = shader
+        //  paint.shader = shader
 
-        //val rect = RectF(10.0f, 10.0f, measuredWidth.toFloat(), measuredHeight.toFloat())
+        //  val rect = RectF(10.0f, 10.0f, measuredWidth.toFloat(), measuredHeight.toFloat())
 
 // rect contains the bounds of the shape
 // radius is the radius in pixels of the rounded corners
@@ -103,10 +104,25 @@ class CircleImageView @JvmOverloads constructor(
 
     }
 
-    //   @Dimension
-    //   fun getBorderWidth():Int {}
-    //   fun setBorderWidth(@Dimension dp:Int)  {}
-    //   fun getBorderColor():Int  {}
-    //   fun setBorderColor(hex:String) {}
-    //   fun setBorderColor(@ColorRes colorId: Int)  {}
+    @Dimension
+    fun getBorderWidth(): Int {
+        return 0
+    }
+
+    fun setBorderWidth(@Dimension dp: Int) {
+
+    }
+
+    fun getBorderColor(): Int {
+        return 0
+    }
+
+    fun setBorderColor(hex: String) {
+
+    }
+
+    fun setBorderColor(@ColorRes colorId: Int) {
+
+    }
+
 }

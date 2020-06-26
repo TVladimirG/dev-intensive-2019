@@ -11,7 +11,7 @@
     <color name="color_gray_light">#ECECEC</color>
 
     <color name="color_divider_dark">#1F000000</color>
-    <color name="color_divider_light">#1FFF</color>
+    <color name="color_divider_light">#1FFFFFFF</color>
 
     <color name="color_white">#FFFFFF</color>
 </resources>
