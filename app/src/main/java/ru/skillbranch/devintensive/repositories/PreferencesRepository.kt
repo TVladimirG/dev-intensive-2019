@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.viewmodels
+package ru.skillbranch.devintensive.repositories
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -25,12 +25,16 @@ object PreferencesRepository {
     }
 
     fun saveAppTheme(theme: Int) {
-        putValue(APP_THEME to theme)
+        putValue(
+            APP_THEME to theme
+        )
     }
 
     fun getAppTheme(): Int {
         return try {
-            prefs.getInt(APP_THEME, AppCompatDelegate.MODE_NIGHT_NO)
+            prefs.getInt(
+                APP_THEME, AppCompatDelegate.MODE_NIGHT_NO
+            )
         } catch (e: Exception) {
             AppCompatDelegate.MODE_NIGHT_NO
         }
@@ -39,23 +43,47 @@ object PreferencesRepository {
 
     fun saveProfile(profile: Profile) {
         with(profile) {
-            putValue(RATING to rating)
-            putValue(RESPECT to respect)
-            putValue(FIRST_NAME to firstName)
-            putValue(LAST_NAME to lastName)
-            putValue(ABOUT to about)
-            putValue(REPOSITORY to repository)
+            putValue(
+                RATING to rating
+            )
+            putValue(
+                RESPECT to respect
+            )
+            putValue(
+                FIRST_NAME to firstName
+            )
+            putValue(
+                LAST_NAME to lastName
+            )
+            putValue(
+                ABOUT to about
+            )
+            putValue(
+                REPOSITORY to repository
+            )
         }
     }
 
     fun getProfile(): Profile = Profile(
         // Берем наш prefs и get значения, если их нет, то по умолчанию.
-        rating = prefs.getInt(RATING, 0),
-        respect = prefs.getInt(RESPECT, 0),
-        firstName = prefs.getString(FIRST_NAME, "")!!,
-        lastName = prefs.getString(LAST_NAME, "")!!,
-        about = prefs.getString(ABOUT, "")!!,
-        repository = prefs.getString(REPOSITORY, "")!!
+        rating = prefs.getInt(
+            RATING, 0
+        ),
+        respect = prefs.getInt(
+            RESPECT, 0
+        ),
+        firstName = prefs.getString(
+            FIRST_NAME, ""
+        )!!,
+        lastName = prefs.getString(
+            LAST_NAME, ""
+        )!!,
+        about = prefs.getString(
+            ABOUT, ""
+        )!!,
+        repository = prefs.getString(
+            REPOSITORY, ""
+        )!!
     )
 
 

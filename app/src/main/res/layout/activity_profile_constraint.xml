@@ -56,12 +56,14 @@
         android:layout_width="@dimen/avatar_round_size"
         android:layout_height="@dimen/avatar_round_size"
         android:layout_marginTop="8dp"
+        android:background="@color/color_accent"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0"
-        android:src="@drawable/avatar_default"
+        android:src="@drawable/new_avatar"
+
         />
 
     <TextView

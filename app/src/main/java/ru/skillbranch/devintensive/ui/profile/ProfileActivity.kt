@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile_constraint.*
 import ru.skillbranch.devintensive.R
@@ -57,10 +56,11 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initViewModel() {
 
-        // Устарело. Так предлогали на курсе.
+        // Устарело. Так предлагали на курсе.
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
 
         // Теперь так:
+        // начиная с implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
         // Инициируем ViewModel для текущей активити. Указываем класс реализующий ViewModel - ProfileViewModel
         //   viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 

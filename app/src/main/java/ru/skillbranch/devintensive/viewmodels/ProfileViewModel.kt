@@ -6,11 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.repositories.PreferencesRepository
 
 class ProfileViewModel : ViewModel() {
 
     // Получим объект - SharedPreferences
-    private val repository: PreferencesRepository = PreferencesRepository
+    private val repository: PreferencesRepository =
+        PreferencesRepository
 
     // создаем LiveData
     private val profileData = MutableLiveData<Profile>()
