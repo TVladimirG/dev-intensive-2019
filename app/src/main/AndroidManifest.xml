@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:fullBackupContent="true"
-        android:theme="@style/AppTheme.SplashTheme">
+        android:theme="@style/SplashTheme">
         <activity android:name=".ui.profile.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
