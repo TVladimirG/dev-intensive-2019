@@ -57,7 +57,7 @@
     </style>
 
 
-    <style name="AppTheme.Launcher">
+    <style name="AppTheme.SplashTheme">
         <item name="android:windowBackground">@drawable/splash</item>
         <!-- для Android 5+ вы можете поменять цвет colorPrimaryDark, -->
         <!-- чтобы соответствовать цвету windowBackground -->
