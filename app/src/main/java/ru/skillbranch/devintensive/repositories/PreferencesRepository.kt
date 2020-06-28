@@ -94,11 +94,11 @@ object PreferencesRepository {
 
         val (k, v) = pair
         when (v) {
-            is String -> editor.putString(k, v)
-            is Int -> editor.putInt(k, v)
             is Boolean -> editor.putBoolean(k, v)
-            is Long -> editor.putLong(k, v)
+            is String -> editor.putString(k, v)
             is Float -> editor.putFloat(k, v)
+            is Long -> editor.putLong(k, v)
+            is Int -> editor.putInt(k, v)
 
             else -> error("Только примитивные типы данных могут быть сохранены в Shared Preferences")
         }
