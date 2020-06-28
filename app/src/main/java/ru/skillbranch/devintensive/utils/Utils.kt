@@ -1,14 +1,10 @@
 package ru.skillbranch.devintensive.utils
 
-import kotlin.collections.HashMap
+import android.text.Editable
 
 object Utils {
-    /*Необходимо реализовать утилитный метод parseFullName(fullName)
-    принимающий в качестве аргумента полное имя пользователя
-    и возвращающий пару значений "firstName lastName"
-    Реализуй метод Utils.parseFullName(fullName) принимающий в качестве аргумента полное имя пользователя (null, пустую строку)
-    и возвращающий пару значений Pair(firstName, lastName) при невозможности распарсить полное имя или его часть вернуть null null/"firstName" null
-     */
+
+
     fun parseFullName(fullName: String?): Pair<String?, String?> {
 
     //  Utils.parseFullName(null) //null null
@@ -30,6 +26,7 @@ object Utils {
         return Pair(firstName, lastName)
 
     }
+
 
     fun transliteration(payload: String, divider: String = " "): String {
 
@@ -66,6 +63,7 @@ object Utils {
         }
         return payloadNew
     }
+
 
     private fun getMap(): HashMap<String, String> {
         return hashMapOf(
@@ -105,21 +103,104 @@ object Utils {
         )
     }
 
+
     fun toInitials(firstName: String?, lastName: String?): String? {
 
         if (firstName == null && lastName == null) return null
 
-        var firstN = firstName ?: ""
-        var lastN = lastName ?: ""
+        var firstInit = firstName ?: ""
+        var lastInit = lastName ?: ""
 
-        firstN = firstN.replace(" ", "")
-        lastN = lastN.replace(" ", "")
+        firstInit = firstInit.replace(" ", "")
+        lastInit = lastInit.replace(" ", "")
 
-        if (firstN.isEmpty() && lastN.isEmpty()) return null
+        if (firstInit.isEmpty() && lastInit.isEmpty()) return null
 
-        if (firstN.isNotEmpty()) firstN = firstN[0].toUpperCase().toString()
-        if (lastN.isNotEmpty()) lastN = lastN[0].toUpperCase().toString()
+        if (firstInit.isNotEmpty()) firstInit = firstInit[0].toUpperCase().toString()
+        if (lastInit.isNotEmpty()) lastInit = lastInit[0].toUpperCase().toString()
 
-        return "$firstN$lastN"
+        return "$firstInit$lastInit"
     }
+
+
+    fun repositoryIsVal(s: Editable?): Boolean {
+
+        // Null или ""
+        if (s.isNullOrEmpty()) {
+            return true
+        }
+
+        // зарезервированные слова
+        var tmtSet = setOf(
+            "enterprise",
+            "features",
+            "topics",
+            "collections",
+            "trending",
+            "events",
+            "marketplace",
+            "pricing",
+            "nonprofit",
+            "customer-stories",
+            "security",
+            "login",
+            "join"
+        )
+
+        for (wrd in tmtSet) {
+            if (s.contains(wrd, true)) {
+                return false
+            }
+        }
+
+        //***************************************************************************
+        var isValid = false
+
+        tmtSet = setOf(
+            "https://www.github.com/",
+            "https://github.com/",
+            "www.github.com/",
+            "github.com/"
+        )
+
+        for (wrd in tmtSet) {
+            if (s.contains(wrd, true)) {
+                isValid = true
+                break
+            }
+        }
+
+        if (isValid) {
+
+            // val s = "https://www.github.com/aksjdhkasjdh/"
+            val s2 = s.toString().replace("https://", "", true)
+            val arr = s2.split("/")
+
+            when {
+                arr.size < 2 -> {
+                    return false
+                }
+                arr.size == 2 && arr[1].isEmpty() -> {
+                    return false
+                }
+                arr.size == 2 && arr[1].isNotEmpty() -> {
+                    return true
+                }
+                arr.size == 3 && arr[2].isEmpty() -> {
+                    return true
+                }
+                arr.size == 3 && arr[2].isNotEmpty() -> {
+                    return false
+                }
+                arr.size > 3 -> {
+                    return false
+                }
+                else -> {
+                    isValid = false
+                }
+            }
+        }
+        return isValid
+    }
+
 }

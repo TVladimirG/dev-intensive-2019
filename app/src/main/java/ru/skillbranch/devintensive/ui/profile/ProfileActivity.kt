@@ -4,6 +4,8 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -14,7 +16,9 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile_constraint.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -25,6 +29,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var viewFields: Map<String, TextView>
     private lateinit var viewModel: ProfileViewModel
     private var isEditMode = false
+    private var repIsValid = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -52,10 +57,31 @@ class ProfileActivity : AppCompatActivity() {
             viewModel.switchTheme()
         }
 
+        et_repository.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                val a = 1
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val a = 1
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                repIsValid = Utils.repositoryIsVal(s)
+                with(wr_repository) {
+                    if (!repIsValid)
+                        error = "Невалидный адрес репозитория"
+                    else error = ""
+                }
+            }
+        })
+
         // Сохраняем или восстанавливаем данные
         initViewModel()
 
     }
+
 
     private fun initViewModel() {
 
@@ -197,18 +223,18 @@ https://github.com/pricing //невалиден
 https://github.com/join //невалиден
 
 
-enterprise
-features
-topics
-collections
-trending
-events
-marketplace
-pricing
-nonprofit
-customer-stories
-security
-login
-join
+"enterprise",
+"features",
+"topics",
+"collections",
+"trending",
+"events",
+"marketplace",
+"pricing",
+"nonprofit",
+"customer-stories",
+"security",
+"login",
+"join",
 
  */
