@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile_constraint.*
@@ -118,8 +117,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun updateTheme(mode: Int) {
-        AppCompatDelegate.setDefaultNightMode(mode)
-        //   delegate.localNightMode = mode
+        // AppCompatDelegate.setDefaultNightMode(mode)
+        delegate.localNightMode = mode
     }
 
     private fun initViews() {
@@ -189,6 +188,10 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveProfileInfo() {
+        if (!repIsValid) {
+            et_repository.setText("")
+        }
+
         Profile(
             firstName = et_first_name.text.toString(),
             lastName = et_last_name.text.toString(),
