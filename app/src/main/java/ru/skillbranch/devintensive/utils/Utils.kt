@@ -153,54 +153,37 @@ object Utils {
             }
         }
 
+        var s2 = s.toString()   // "https://www.github.com/name/"
+        s2 = s2.replace("https://", "", true)    // "www.github.com/name/"
+        s2 = s2.replace("www.", "", true)        // "github.com/name/"
+        s2 = s2.replace("github.com", "", true)  // "/name/"
         //***************************************************************************
-        var isValid = false
-
-        tmtSet = setOf(
-            "https://www.github.com/",
-            "https://github.com/",
-            "www.github.com/",
-            "github.com/"
-        )
-
-        for (wrd in tmtSet) {
-            if (s.contains(wrd, true)) {
-                isValid = true
-                break
+        val arr = s2.split("/")
+        if (arr[0].isNotEmpty()) return false
+        when {
+            arr.size == 2 && arr[1].isEmpty() -> {
+                return false
+            }
+            arr.size == 2 && arr[1].isNotEmpty() -> {
+                return true
+            }
+            arr.size == 3 && arr[2].isNotEmpty() -> {
+                return false
+            }
+            arr.size == 3 && arr[1].isEmpty() -> {
+                return false
+            }
+            arr.size == 3 && arr[1].isNotEmpty() -> {
+                return true
+            }
+            arr.size > 3 -> {
+                return false
+            }
+            else -> {
+                return false
             }
         }
 
-        if (isValid) {
-
-            // val s = "https://www.github.com/aksjdhkasjdh/"
-            val s2 = s.toString().replace("https://", "", true)
-            val arr = s2.split("/")
-
-            when {
-                arr.size < 2 -> {
-                    return false
-                }
-                arr.size == 2 && arr[1].isEmpty() -> {
-                    return false
-                }
-                arr.size == 2 && arr[1].isNotEmpty() -> {
-                    return true
-                }
-                arr.size == 3 && arr[2].isEmpty() -> {
-                    return true
-                }
-                arr.size == 3 && arr[2].isNotEmpty() -> {
-                    return false
-                }
-                arr.size > 3 -> {
-                    return false
-                }
-                else -> {
-                    isValid = false
-                }
-            }
-        }
-        return isValid
     }
 
 }
