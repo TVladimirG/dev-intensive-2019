@@ -177,7 +177,6 @@ class ProfileActivity : AppCompatActivity() {
             // подкрасим фон btn_edit
             background.colorFilter = filter
 
-
             // сменим иконку btn_edit
             val icon =
                 if (isEdit)

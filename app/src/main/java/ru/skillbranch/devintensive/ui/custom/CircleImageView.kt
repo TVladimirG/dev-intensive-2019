@@ -6,8 +6,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.ImageView
-import androidx.annotation.ColorRes
-import androidx.annotation.Dimension
 import ru.skillbranch.devintensive.R
 
 
@@ -20,12 +18,10 @@ class CircleImageView @JvmOverloads constructor(
 
 
     companion object {
-     //   private const val DEFAULT_ASPECT_RATIO = 1.78f
            private const val DEFAULT_BORDER_COLOR = Color.WHITE
            private const val DEFAULT_BORDER_WIDTH = 2
     }
 
-     // private var aspectRatio = DEFAULT_ASPECT_RATIO
      private var cv_borderColor = DEFAULT_BORDER_COLOR
      private var cv_borderWidth = DEFAULT_BORDER_WIDTH
 
@@ -47,10 +43,8 @@ class CircleImageView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        //   val newHeight = (measuredWidth/aspectRatio).toInt()
-        //   setMeasuredDimension(measuredWidth, newHeight)
-        setFrame(40, 40, 40, 40)
-
+        //  val newHeight = (measuredWidth/aspectRatio).toInt()
+        //  setMeasuredDimension(measuredWidth, newHeight)
 
     }
 
@@ -61,49 +55,45 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        //   canvas!!.drawOval(30f,30f,30f,30f, Paint())
+        /*
+        val paint = Paint()
+       // paint.color = Color.WHITE
+        paint.textSize = 120F
+        paint.isAntiAlias = false
+        canvas!!.drawColor(Color.BLUE)
+        canvas.drawText("HK", 20F, 80F, paint)
+        canvas.drawOval(50f,50f,50f,50f, paint)
 
-        //   val dr: RoundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, src. as Bitmap)
-        //   dr.cornerRadius = cornerRadius
-        //   imageView.setImageDrawable(dr)
+         */
 
-        //  val bitmap = (.getDrawable() as BitmapDrawable).bitmap
-        //       var bitmap = ImageHelper.getRoundedCornerBitmap(bitmap, )
-        //  val paint = Paint()
+        /*
+        val output = Bitmap.createBitmap(measuredWidth/2, measuredHeight/2, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(output)
+        val color = -0xbdbdbe
+        val paint = Paint()
+        val rect = Rect(0, 0, bitmap.width, bitmap.height)
+        val rectF = RectF(rect)
+        val roundPx = pixels.toFloat()
+        paint.setAntiAlias(true)
+        canvas.drawARGB(0, 0, 0, 0)
+        paint.setColor(color)
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint)
+        paint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.SRC_IN))
+        canvas.drawBitmap(bitmap, rect, rect, paint)
 
+         */
+
+        //    val paint = Paint()
         //  val x = measuredWidth/2 as Float
         //  val y = measuredHeight/2 as Float
         //  val r = 20  as Float
-
-        //  paint.isAntiAlias = true;
-
-
-        //  val bitmap = Bitmap.createBitmap(
-        //      measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888)
-
-        //  val shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-
-        //  paint.isAntiAlias = true
-        //  paint.shader = shader
-
-        //  val rect = RectF(10.0f, 10.0f, measuredWidth.toFloat(), measuredHeight.toFloat())
-
-// rect contains the bounds of the shape
-// radius is the radius in pixels of the rounded corners
-// paint contains the shader that will texture the shape
-
-// rect contains the bounds of the shape
-// radius is the radius in pixels of the rounded corners
-// paint contains the shader that will texture the shape
-        // canvas!!.drawRoundRect(rect, r, r, paint)
-
-        //  canvas
-        //  if (canvas != null) {
-        //      canvas.drawCircle(x, y, r, paint)
-        // }
+        //     paint.isAntiAlias = true;
+        //      paint.color = Color.GREEN
+        // canvas?.drawCircle(x, y, r, paint)
 
     }
 
+    /*
     @Dimension
     fun getBorderWidth(): Int {
         return 0
@@ -124,5 +114,7 @@ class CircleImageView @JvmOverloads constructor(
     fun setBorderColor(@ColorRes colorId: Int) {
 
     }
+
+     */
 
 }

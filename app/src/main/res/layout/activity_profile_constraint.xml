@@ -46,6 +46,7 @@
         tools:ignore="PrivateResource" />
 
     <!-- <ru.skillbranch.devintensive.ui.custom.CircleImageView. -->
+    <!--android:src="@drawable/avatar_default"-->
     <ImageView
         android:id="@+id/iv_avatar"
         android:layout_width="@dimen/avatar_round_size"
@@ -56,7 +57,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
